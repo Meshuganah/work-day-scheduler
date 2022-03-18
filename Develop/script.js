@@ -14,15 +14,19 @@ var loadTasks = function() {
             hour14: [],
             hour15: [],
             hour16: [],
+            hour17: [],
         }
     };
 
     //TODO add a jquery each loop to populate our persistent tasks
 };
 
-var saveTasks = function() {
-    localStorage.setItem("planner", JSON.stringify(tasks));
-};
+$(".saveBtn").on("click", function(){
+    var text = $(this).prev().text();
+    var time = $(this).parent().attr("id");
+
+    localStorage.setItem(time, text);
+});
 
 //Function that allows user to click on the blank space within a time block to add a task
 $(".task-group").on("click", ".planned-task", function(){
@@ -44,15 +48,11 @@ $(".task-group").on("blur", "textarea", function(){
         .val()
         .trim();
 
-    var status = $(this)
-        .closest("task-group")
-        .attr("id")
-        //.replace("task-", "");
-
     var taskSpan = $("<span>")
         .addClass("col-10")
         .addClass("border")
         .addClass("border-dark")
+        .addClass("planned-task")
         .text(text);
 
     $(this).replaceWith(taskSpan);
