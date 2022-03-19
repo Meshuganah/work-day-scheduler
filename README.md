@@ -9,4 +9,6 @@ In order to delete a task a user must click on the slot and manually erase the t
 
 Scheduler will audit the current time and color the time slots based on whether they are past due or not upon refresh.
 
+Live Link: https://meshuganah.github.io/work-day-scheduler/
+
 ![The scheduler displaying tasks in the past, present, and future](./Develop/Work-Day-Scheduler.JPG)
