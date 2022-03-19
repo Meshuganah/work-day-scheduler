@@ -56,12 +56,9 @@ var auditTask = function() {
         }
         else if (taskHour == currentHour) {
             $(this).addClass("present");
-            //$(".planned-task").removeClass("future");
         } 
         else if (taskHour > currentHour) {
             $(this).addClass("past");
-            //$(".planned-task").removeClass("future");
-           // $(".planned-task").removeClass("present");
         }
     });
 };

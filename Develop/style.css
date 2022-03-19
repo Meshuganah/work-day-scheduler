@@ -25,8 +25,7 @@ textarea{
   white-space: pre-wrap;
 }
 
-.time-block{
-  text-align: center;
+.task-group{
   border-radius: 15px;
 }
 
