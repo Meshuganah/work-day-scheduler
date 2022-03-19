@@ -51,13 +51,13 @@ var auditTask = function() {
 
         $(".planned-task").removeClass("future planned past")
         
-        if (taskHour < currentHour) {
+        if (taskHour > currentHour) {
             $(this).addClass("future");
         }
         else if (taskHour == currentHour) {
             $(this).addClass("present");
         } 
-        else if (taskHour > currentHour) {
+        else if (taskHour < currentHour) {
             $(this).addClass("past");
         }
     });
