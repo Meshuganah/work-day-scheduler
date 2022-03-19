@@ -1,26 +1,7 @@
 //Date formating at top of page
 $("#currentDay").text(moment().format("MMMM D YYYY"));
 
-var tasks = {};
-
-var loadTasks = function() {
-    if (!tasks) {
-        tasks = {
-            hour9: [],
-            hour10: [],
-            hour11: [],
-            hour12: [],
-            hour13: [],
-            hour14: [],
-            hour15: [],
-            hour16: [],
-            hour17: [],
-        }
-    };
-
-    //TODO add a jquery each loop to populate our persistent tasks
-};
-
+//Save button logic that grabs information from nearby elements and sets to localStorage
 $(".saveBtn").on("click", function(){
     var text = $(this).prev().text();
     var time = $(this).parent().attr("id");
@@ -43,6 +24,7 @@ $(".task-group").on("click", ".planned-task", function(){
         textInput.trigger("focus");
 });
 
+//Recreates original span element with the text entered by user.
 $(".task-group").on("blur", "textarea", function(){
     var text = $(this)
         .val()
@@ -57,3 +39,14 @@ $(".task-group").on("blur", "textarea", function(){
 
     $(this).replaceWith(taskSpan);
 });
+
+//Loads the saved data for each hour block from local storage
+$("#task-9").text(localStorage.getItem("hour-9"));
+$("#task-10").text(localStorage.getItem("hour-10"));
+$("#task-11").text(localStorage.getItem("hour-11"));
+$("#task-12").text(localStorage.getItem("hour-12"));
+$("#task-13").text(localStorage.getItem("hour-13"));
+$("#task-14").text(localStorage.getItem("hour-14"));
+$("#task-15").text(localStorage.getItem("hour-15"));
+$("#task-16").text(localStorage.getItem("hour-16"));
+$("#task-17").text(localStorage.getItem("hour-17"));
