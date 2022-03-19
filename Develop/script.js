@@ -19,6 +19,7 @@ $(".task-group").on("click", ".planned-task", function(){
         .addClass("border")
         .addClass("border-dark")
         .addClass("form-control")
+        .addClass("p-2")
         .val(text);
         $(this).replaceWith(textInput);
         textInput.trigger("focus");
@@ -35,10 +36,35 @@ $(".task-group").on("blur", "textarea", function(){
         .addClass("border")
         .addClass("border-dark")
         .addClass("planned-task")
+        .addClass("p-2")
         .text(text);
 
     $(this).replaceWith(taskSpan);
 });
+
+//Determines whether a task is "due" soon or not
+var auditTask = function() {
+    var currentHour = moment().hour();
+
+    $(".task-group").each(function(){
+        var taskHour = parseInt($(this).attr("id").split("-")[1]);
+
+        $(".planned-task").removeClass("future planned past")
+        
+        if (taskHour < currentHour) {
+            $(this).addClass("future");
+        }
+        else if (taskHour == currentHour) {
+            $(this).addClass("present");
+            //$(".planned-task").removeClass("future");
+        } 
+        else if (taskHour > currentHour) {
+            $(this).addClass("past");
+            //$(".planned-task").removeClass("future");
+           // $(".planned-task").removeClass("present");
+        }
+    });
+};
 
 //Loads the saved data for each hour block from local storage
 $("#task-9").text(localStorage.getItem("hour-9"));
@@ -50,3 +76,5 @@ $("#task-14").text(localStorage.getItem("hour-14"));
 $("#task-15").text(localStorage.getItem("hour-15"));
 $("#task-16").text(localStorage.getItem("hour-16"));
 $("#task-17").text(localStorage.getItem("hour-17"));
+
+auditTask();
